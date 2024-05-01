@@ -118,6 +118,11 @@ async function run() {
         res.send(newresul)
     })
 
+    app.post('/art', async (req,res)=> {
+        const dat = req.body
+        const result = await haiku.insertOne(dat)
+        res.send(result)
+    })
     
 
     // Send a ping to confirm a successful connection
