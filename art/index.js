@@ -129,6 +129,12 @@ async function run() {
         res.send(resultp)
     })
     
+    app.get('/myallart', async (req,res)=> {
+        const newresultip = Mydata.find()
+        const newresip = await newresultip.toArray()
+         res.send(newresip)
+     })
+
     
 
     // Send a ping to confirm a successful connection
