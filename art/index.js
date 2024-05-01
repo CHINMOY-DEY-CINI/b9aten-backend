@@ -123,6 +123,12 @@ async function run() {
         const result = await haiku.insertOne(dat)
         res.send(result)
     })
+    app.post('/myallart', async (req,res)=> {
+        const daty = req.body
+        const resultp = await Mydata.insertOne(daty)
+        res.send(resultp)
+    })
+    
     
 
     // Send a ping to confirm a successful connection
