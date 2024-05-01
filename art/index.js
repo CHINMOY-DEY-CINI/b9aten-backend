@@ -66,6 +66,52 @@ async function run() {
         res.send(result)
     })
 
+    app.get('/subcategorysec/:allsu', async(req,res)=> {
+        const amarid = req.params.allsu
+        // console.log(amarid)
+        const nunu = haiku.find({Subcategory:amarid})
+        const newre = await nunu.toArray()
+        res.send(newre)
+    })
+
+    app.get('/myallart/:id',async(req,res)=>{
+        const idy = req.params.id
+        const queryp = {_id: new ObjectId(idy)}
+        const resultl = await Mydata.findOne(queryp)
+        res.send(resultl)
+    })
+    app.delete('/myallart/:id',async(req,res)=>{
+        const idyp = req.params.id
+        const queryp = {_id: new ObjectId(idyp)}
+        const resultlo = await Mydata.deleteOne(queryp)
+        res.send(resultlo)
+    })
+
+    app.put('/myallart/:id', async(req,res)=>{
+        const id = req.params.id
+        const filter = {_id: new ObjectId(id)}
+        const options = { upsert : true }
+        const newupdatedata = req.body
+        const updatedata = {
+            $set: {
+                customization:newupdatedata.customizationi,
+                name:newupdatedata.namei,
+                item:newupdatedata.itemi,
+                imgi:newupdatedata.imgii,
+                stock:newupdatedata.stocki,
+                Rating:newupdatedata.Ratingi,
+                Processing:newupdatedata.Processingi,
+                email:newupdatedata.emaili,
+                Price:newupdatedata.Pricei,
+                Short:newupdatedata.Shorti,
+                Subcategory:newupdatedata.Subcategoryi
+
+            }
+        }
+        const resultp = await Mydata.updateOne(filter,updatedata,options)
+        res.send(resultp)
+    })
+    
     
 
     // Send a ping to confirm a successful connection
