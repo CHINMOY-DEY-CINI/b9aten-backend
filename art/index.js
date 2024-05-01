@@ -59,6 +59,13 @@ async function run() {
     const Mydata = database.collection("myallarts");
 
    
+    app.get('/art/:id',async(req,res)=>{
+        const ide = req.params.id
+        const query = {_id: new ObjectId(ide)}
+        const result = await haiku.findOne(query)
+        res.send(result)
+    })
+
     
 
     // Send a ping to confirm a successful connection
