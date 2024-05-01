@@ -112,6 +112,12 @@ async function run() {
         res.send(resultp)
     })
     
+    app.get('/art', async (req,res)=> {
+       const newresult = haiku.find()
+       const newresul = await newresult.toArray()
+        res.send(newresul)
+    })
+
     
 
     // Send a ping to confirm a successful connection
