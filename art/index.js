@@ -135,7 +135,31 @@ async function run() {
          res.send(newresip)
      })
 
-    
+     app.get('/myallart:id',async(req,res)=>{
+        const idery = req.params.id
+        const querw = {_id: new ObjectId(idery)}
+        const resultol = await allart.findOne(querw)
+        res.send(resultol)
+    })
+
+    app.post('/allart', async (req,res)=> {
+        const allars = req.body
+        const result = await allart.insertOne(allars)
+        res.send(result)
+    })
+
+    app.get('/allart', async (req,res)=> {
+        const newresulty = allart.find()
+        const newresu = await newresulty.toArray()
+         res.send(newresu)
+     })
+
+     app.get('/allcraftart/allart/:id',async(req,res)=>{
+        const ider = req.params.id
+        const quer = {_id: new ObjectId(ider)}
+        const resulto = await allart.findOne(quer)
+        res.send(resulto)
+    })
 
     // Send a ping to confirm a successful connection
     // await client.db("admin").command({ ping: 1 });
